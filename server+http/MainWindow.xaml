@@ -1,0 +1,29 @@
+﻿<Window x:Class="server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:server"
+        Loaded="Window_Loaded"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Title="Server" Height="450" Width="300">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="IP:"/>
+            <TextBox x:Name="serverIp" Text="127.0.0.1"/>
+            <Label Content="Port:"/>
+            <TextBox x:Name="serverPort" Text="8090"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Start" x:Name="StartServer"
+                    Click="StartServer_Click"/>
+            <Label x:Name="serverStatus" Content="OFF" Background="Red"/>
+            <Button Content="Stop" x:Name="StopServer"
+                    Click="StopServer_Click"/>
+        </StackPanel>
+        <TextBlock x:Name="serverLogs" 
+                   Text="Server Logs:&#10;"
+                   TextWrapping="Wrap"/>
+    </StackPanel>
+</Window>
