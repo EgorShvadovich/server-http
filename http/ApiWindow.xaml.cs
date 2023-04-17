@@ -94,6 +94,50 @@ namespace http
              * https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=20200302&json
              */
         }
+
+        private async void NbuOnDate_Click(object sender, RoutedEventArgs e)
+        {
+            int day = Convert.ToInt32(DateDay.Text);
+            int month = Convert.ToInt32(DateMonth.Text);
+            String url = $"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date={DateYear.Text}{DateDay.Text}{DateMonth}&json";
+            if (day <= 9 && day >= 1)
+            {
+                string dayString = day.ToString("00");
+                url = $"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date={DateYear.Text}{dayString}{DateMonth.Text}&json";
+
+            }
+            if (month <= 9 && month >= 1)
+            {
+                string monthString = month.ToString("00");
+                url = $"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date={DateYear.Text}{DateDay.Text}{monthString}&json";
+
+            }
+            // String json = await httpClient.GetStringAsync(url);
+            // var rates = JsonSerializer.Deserialize<List<NbuRate>>(json);
+
+            _nbuRates = await httpClient.GetFromJsonAsync<List<NbuRate>>(url);
+
+            if (_nbuRates is null)
+            {
+                MessageBox.Show("JSON parse error");
+            }
+            else
+            {
+                NbuRates.Clear();
+                foreach (NbuRate rate in _nbuRates)
+                {
+                    NbuRates.Add(rate);
+                }
+                /*
+                StringBuilder sb = new();
+                foreach (NbuRate rate in rates)
+                {
+                    sb.Append(rate.txt).Append(' ').Append(rate.rate).Append('\n');
+                }
+                resultTextBlock.Text = sb.ToString();
+                */
+            }
+        }
     }
 
     // ORM - объектное отображение - представление данных в виде объектов и их коллекций

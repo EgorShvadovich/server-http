@@ -13,10 +13,25 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Orientation="Vertical">
+
             <Button x:Name="NbuToday"
                     Content="Курс валют НБУ на сегодня"
                     Margin="10 5"
                     Click="NbuToday_Click"/>
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="NbuOnDate"
+                    Content="Курс валют НБУ по выбранной дате"
+                    Margin="10 5"
+                    Click="NbuOnDate_Click"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="Год:"/>
+                    <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="DateYear" Width="60" Text="2020" ></TextBox>
+                    <Label Content="Месяц:"/>
+                    <TextBox VerticalAlignment="Center" x:Name="DateMonth" Width="30"/>
+                    <Label Content="День:"/>
+                    <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="DateDay" Width="30"></TextBox>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
 
         <Grid Grid.Column="1">
