@@ -60,5 +60,9 @@ namespace http
         {
             new ApiWindow().Show();
         }
+        private void ApiCoin_Click(object sender, RoutedEventArgs e)
+        {
+            new ApiCoinWindow().Show();
+        }
     }
 }
