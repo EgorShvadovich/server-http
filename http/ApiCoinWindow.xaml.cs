@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,16 +41,16 @@ namespace http
 
         private async void LoadAssets()
         {
-            var AssetsResponse = await _httpClient.GetFromJsonAsync<AssetsResponse>("https://api.coincap.io/v2/assets");
-            if(AssetsResponse is null) 
+            var assetsResponse = await _httpClient.GetFromJsonAsync<AssetsResponse>("https://api.coincap.io/v2/assets");
+            if(assetsResponse is null) 
             { 
                 MessageBox.Show("json error");
                 return;
             }
             indexShown = 0;
-            ShowHistory(AssetsResponse.data[indexShown]);
+            ShowHistory(assetsResponse.data[indexShown]);
             Assets.Clear();
-            foreach(Asset asset in AssetsResponse.data)
+            foreach(Asset asset in assetsResponse.data)
             {
                 Assets.Add(asset);
             }
@@ -66,8 +67,25 @@ namespace http
                 Y2 = toY,
                 Stroke = new SolidColorBrush(Colors.BlueViolet),
                 StrokeThickness = 1
+
             };
+            
             GraphCanvas.Children.Add(line);
+        }
+        private Brush RandomBrush()
+        {
+            Brush result = Brushes.Transparent;
+
+            Random rnd = new Random();
+
+            Type brushesType = typeof(Brushes);
+
+            PropertyInfo[] properties = brushesType.GetProperties();
+
+            int random = rnd.Next(properties.Length);
+            result = (Brush)properties[random].GetValue(null, null);
+
+            return result;
         }
         private async void ShowHistory(Asset asset)
         {
@@ -109,17 +127,16 @@ namespace http
                 DrawLine(x1,y1, x2, y2);
                 x1 = x2;
                 y1 = y2;
-
             }
+            CourseHistory.Content = $"Course history: {asset.name}";
         }
 
         private void AssetsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(indexShown == AssetsListView.SelectedIndex)
-            {
-                return;
-            }
-            MessageBox.Show(AssetsListView.SelectedIndex.ToString());
+            var selectedAsset = AssetsListView.SelectedItem as Asset;
+            if (selectedAsset == null) return;
+            ShowHistory(selectedAsset);
+            GraphCanvas.Children.Clear();
         }
     }
     public class Asset

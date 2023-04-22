@@ -31,9 +31,14 @@
                 Margin="10 10 30 10"
                 Click="ApiRequests_Click"/>
         <Button x:Name="ApiCoin"
-                Content="4. Запросы API - 2"
+                Content="5. Запросы API - 2"
                 FontSize="18"
                 Margin="10 10 30 10"
                 Click="ApiCoin_Click"/>
+        <Button x:Name="SmtpButton"
+                Content="5. SMTP,EMAIL"
+                FontSize="18"
+                Margin="10 10 30 10"
+                Click="SmtpButton_Click"/>
     </StackPanel>
 </Window>

@@ -64,5 +64,10 @@ namespace http
         {
             new ApiCoinWindow().Show();
         }
+
+        private void SmtpButton_Click()
+        {
+
+        }
     }
 }
