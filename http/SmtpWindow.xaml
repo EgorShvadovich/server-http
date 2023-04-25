@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:http"
         mc:Ignorable="d"
-        Title="SmtpWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Loaded="Window_Loaded"
+        Title="SmtpWindow" Height="450" Width="300">
+    <StackPanel Orientation="Vertical">
+        <Button Content="Send Test Message"
+                Margin="20 10"
+                x:Name="SendTestButton"
+                Click="SendTestButton_Click"/>
+        <Button Content="Send HTML Message"
+                Margin="20 10"
+                x:Name="SendHtmlButton"
+                Click="SendHtmlButton_Click"/>
+        <Button Content="Send Random Code Message" Margin="20 10" x:Name="SendRandomCodeButton"
+                Click="SendRandomCodeButton_Click"/>
+        <Border BorderBrush="Khaki" BorderThickness="1">
+            <StackPanel Orientation="Vertical" 
+                        Margin="5">
+                <DockPanel >
+                    <Label Content="Name:" Width="45"/>
+                    <TextBox x:Name="UserNameTextbox"
+                             Text="Experienced User"/>
+                </DockPanel>
+                <DockPanel >
+                    <Label Content="Email:" Width="45"/>
+                    <TextBox x:Name="UserEmailTextbox"
+                             Text="egorplayer88@gmail.com"/>
+                </DockPanel>
+                <Button Content="Register"
+                        x:Name="RegisterButton"
+                        Click="RegisterButton_Click"
+                        Margin="20 10"/>
+
+                <DockPanel x:Name="ConfirmDockPanel"
+                           Visibility="Hidden">
+                    <Label Content="Code from Email:" />
+                    <Button Content="Confirm" 
+                            DockPanel.Dock="Right"
+                            Margin="5 0"
+                            x:Name="ConfirmButton"
+                            Click="ConfirmButton_Click"/>
+                    <TextBox x:Name="ConfirmTextbox"/>
+                </DockPanel>
+
+            </StackPanel>
+
+        </Border>
+    </StackPanel>
+  
 </Window>

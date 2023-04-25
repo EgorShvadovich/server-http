@@ -1,10 +1,14 @@
 {
-  "exclude": [
-    "**/bin",
-    "**/bower_components",
-    "**/jspm_packages",
-    "**/node_modules",
-    "**/obj",
-    "**/platforms"
-  ]
+  "smtp": {
+    "gmail": {
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "email": "egorshvadovich@gmail.com",
+      "password": "ufzolwyxhilrbkko",
+      "ssl": true
+    }
+  },
+  "dbms": {
+    "planetScale": "Server=aws.connect.psdb.cloud;Database=database1;user=1ur3580k1ui7e2ja16xj;password=pscale_pw_rFd3gA7q8eiKELvYqPhwyUp6SDRAkGeeMuSzvfIuAZk;SslMode=VerifyFull;"
+  }
 }
